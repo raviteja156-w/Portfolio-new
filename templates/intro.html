@@ -5,98 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vinay Kolar | Creative Director</title>
 
-<!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <style>
-@font-face{
-  font-family:'Goutham';
-  src:url('/fonts/Goutham-Regular.woff2') format('woff2');
-  font-display:swap;
+/* =====================
+   FONT (SAFE FALLBACK)
+===================== */
+body{
+  font-family:'Segoe UI',system-ui,sans-serif;
+  background:#020617;
+  color:#fff;
+  overflow-x:hidden;
 }
 
+/* RESET */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
-body{
-  font-family:'Goutham', sans-serif;
-  background:#020617;
-  color:#fff;
-  overflow-x:hidden;
-}
-
-/* CONTACT */
+/* CONTACT BUTTON */
 .contact{
   position:fixed;
-  top:22px;
-  right:26px;
+  top:20px;
+  right:24px;
   padding:12px 26px;
   border:1.5px solid #22c55e;
   color:#22c55e;
   border-radius:40px;
   font-weight:700;
   text-decoration:none;
-  transition:.3s;
   z-index:50;
+  transition:.3s;
 }
 .contact:hover{
   background:#22c55e;
-  color:#022c22;
+  color:#021b10;
   box-shadow:0 0 18px rgba(34,197,94,.6);
 }
 
-/* ======================
+/* =====================
    HERO
-====================== */
+===================== */
 .hero{
   min-height:100vh;
   position:relative;
   display:flex;
-  padding:80px 70px;
+  align-items:flex-start;
+  padding:80px 60px;
 }
 
-/* BACKGROUND IMAGE */
+/* BACKGROUND IMAGE — FIXED */
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
   background:url("https://i.ibb.co/wZy8W9t7/person.png") no-repeat;
-  background-size:cover;
-  background-position: right center;
+  background-size:auto 100%;       /* 👈 KEY FIX (zoom out) */
+  background-position:right center;
   z-index:1;
 }
 
-/* DARK GRADIENT OVER IMAGE */
+/* OVERLAY */
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
     to right,
-    rgba(2,6,23,0.97) 0%,
-    rgba(2,6,23,0.92) 35%,
-    rgba(2,6,23,0.55) 65%,
-    rgba(2,6,23,0.25) 100%
+    rgba(2,6,23,0.98) 0%,
+    rgba(2,6,23,0.95) 35%,
+    rgba(2,6,23,0.6) 65%,
+    rgba(2,6,23,0.3) 100%
   );
   z-index:2;
 }
 
 /* CONTENT */
 .left{
-  width:60%;
+  max-width:720px;
+  width:100%;
   display:flex;
   flex-direction:column;
-  gap:32px;
+  gap:28px;
   position:relative;
   z-index:5;
 }
 
 /* NAME */
 .name{
-  font-size:68px;
+  font-size:clamp(38px,6vw,68px);
   font-weight:900;
   letter-spacing:2px;
 }
@@ -105,40 +104,39 @@ body{
 .box{
   background:rgba(255,255,255,0.08);
   backdrop-filter:blur(14px);
-  border-radius:28px;
-  padding:36px;
-  border:1px solid rgba(255,255,255,0.25);
-  box-shadow:0 0 24px rgba(255,255,255,0.1);
-  animation:float 6s ease-in-out infinite;
+  border-radius:26px;
+  padding:32px;
+  border:1px solid rgba(255,255,255,0.22);
+  box-shadow:0 0 22px rgba(255,255,255,.08);
 }
 
+/* TEXT */
 .box h2{
-  font-size:28px;
+  font-size:26px;
   margin-bottom:10px;
 }
-
 .green{
   color:#22c55e;
   font-weight:700;
 }
-
 .box p{
-  font-size:16.5px;
+  font-size:16px;
   line-height:1.65;
 }
 
 /* SKILLS */
 .skills{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px 24px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px 22px;
 }
 
 /* WORK BUTTON */
 .work-btn{
   margin:30px auto 0;
-  width:70%;
-  padding:18px 28px;
+  width:100%;
+  max-width:420px;
+  padding:18px 26px;
   border-radius:60px;
   border:1.5px solid #fff;
   display:flex;
@@ -147,127 +145,101 @@ body{
   cursor:pointer;
   transition:.3s;
 }
-
 .work-btn span{
   font-size:20px;
   font-weight:800;
 }
-
-.work-btn i{
-  font-size:22px;
-  animation:arrow 1.4s infinite;
-}
-
 .work-btn:hover{
   border-color:#22c55e;
   background:rgba(34,197,94,.15);
   box-shadow:0 0 25px rgba(34,197,94,.6);
 }
 
-/* ANIMATIONS */
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-}
-@keyframes arrow{
-  0%,100%{transform:translateX(0);}
-  50%{transform:translateX(6px);}
-}
-
-/* ======================
-   RESPONSIVE
-====================== */
-@media(max-width:1024px){
-  .hero{
-    padding:60px 40px;
-  }
-  .left{
-    width:70%;
-  }
-  .name{
-    font-size:54px;
-  }
-}
-
+/* =====================
+   MOBILE NATURAL STACK
+===================== */
 @media(max-width:768px){
   .hero{
-    padding:50px 20px;
+    padding:60px 20px;
   }
 
   .hero::before{
+    background-size:100% auto;
     background-position:center top;
   }
 
   .hero::after{
     background:linear-gradient(
       to bottom,
-      rgba(2,6,23,0.96) 0%,
+      rgba(2,6,23,0.97) 0%,
       rgba(2,6,23,0.85) 55%,
       rgba(2,6,23,0.45) 100%
     );
   }
 
-  .left{
-    width:100%;
-  }
-
   .name{
-    font-size:42px;
     text-align:center;
-  }
-
-  .skills{
-    grid-template-columns:1fr;
-  }
-
-  .work-btn{
-    width:100%;
   }
 }
 </style>
 </head>
 
-<body> <a href="/contact" class="contact">CONTACT</a>
-  <div class="hero"> <!-- LEFT CONTENT -->
-    <div class="left">
-      <div class="name">VINAY KOLAR</div>
-      <div class="box">
-        <h2>CREATIVE GEEK</h2>
-        <p class="green">250+ Clients • 12+ Years</p>
-        <p><b>One Obsessive Visual mind.</b></p>
-        <p> I turn brand stories into high-performing video campaigns. From concept to final cut, I create cinematic,
-          conversion-focused content for social, UGC and digital platforms. </p>
-        <p> As a Creative Director, I’ve led international projects, partnered with the Government of Telangana, and
-          delivered large-scale AI video campaigns. </p>
-      </div>
-      <div class="box">
-        <h2>CREATIVE JOURNEY</h2>
-        <p><b>Video Producer & Ad Filmmaker</b> – <span class="green">Hyphen Marketers, India</span></p>
-        <p><b>Production Manager & Set Designer</b> – <span class="green">Tutorac, India</span></p>
-        <p><b>Business Developer & Client Services Manager</b> – <span class="green">Ventures Multimedia &
-            Communications</span></p>
-        <p><b>Video Producer & Creative Director</b> – <span class="green">Kalo, India</span></p>
-      </div>
-      <div class="box">
-        <h2 class="green">Skills</h2>
-        <div class="skills">
-          <p>AI Ads Production</p>
-          <p>Production Project Management</p>
-          <p>Creative Direction</p>
-          <p>Social Media Strategy</p>
-          <p>Set Design & Prop Styling</p>
-          <p>UGC Content Creation</p>
-          <p>Script & Storyboarding</p>
-          <p>Product Photography</p>
-          <p>Team Leadership</p>
-          <p>Budget & Resource Management</p>
-        </div>
-      </div>
-      <div class="work-btn" onclick="window.location.href='/portfolio'"> <span>MY WORKS</span>
-        <div class="arrow">➜ ➜ ➜</div>
+<body>
+
+<a href="/contact" class="contact">CONTACT</a>
+
+<div class="hero">
+  <div class="left">
+
+    <div class="name">VINAY KOLAR</div>
+
+    <div class="box">
+      <h2>CREATIVE GEEK</h2>
+      <p class="green">250+ Clients • 12+ Years</p>
+      <p><b>One Obsessive Visual mind.</b></p>
+      <p>
+        I turn brand stories into high-performing video campaigns.
+        From concept to final cut, I create cinematic,
+        conversion-focused content for social, UGC and digital platforms.
+      </p>
+      <p>
+        As a Creative Director, I’ve led international projects,
+        partnered with the Government of Telangana, and delivered
+        large-scale AI video campaigns.
+      </p>
+    </div>
+
+    <div class="box">
+      <h2>CREATIVE JOURNEY</h2>
+      <p><b>Video Producer & Ad Filmmaker</b> – <span class="green">Hyphen Marketers, India</span></p>
+      <p><b>Production Manager & Set Designer</b> – <span class="green">Tutorac, India</span></p>
+      <p><b>Business Developer & Client Services Manager</b> – <span class="green">Ventures Multimedia & Communications</span></p>
+      <p><b>Video Producer & Creative Director</b> – <span class="green">Kalo, India</span></p>
+    </div>
+
+    <div class="box">
+      <h2 class="green">Skills</h2>
+      <div class="skills">
+        <p>AI Ads Production</p>
+        <p>Production Project Management</p>
+        <p>Creative Direction</p>
+        <p>Social Media Strategy</p>
+        <p>Set Design & Prop Styling</p>
+        <p>UGC Content Creation</p>
+        <p>Script & Storyboarding</p>
+        <p>Product Photography</p>
+        <p>Team Leadership</p>
+        <p>Budget & Resource Management</p>
       </div>
     </div>
+
+    <div class="work-btn" onclick="window.location.href='/portfolio'">
+      <span>MY WORKS</span>
+      <span>➜ ➜ ➜</span>
+    </div>
+
   </div>
+</div>
+
 </body>
 </html>
-
