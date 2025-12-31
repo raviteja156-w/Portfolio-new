@@ -1,143 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Vinay Kolar</title>
-
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <style>
-@font-face {
-  font-family: 'Goutham';
-  src: url('/fonts/Goutham-Regular.woff2') format('woff2');
-  font-display: swap;
-}
-
-*{
+  *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Goutham','Segoe UI',sans-serif;
+  font-family:'Segoe UI',sans-serif;
 }
 
 body{
-  background:linear-gradient(135deg,#020617,#050b25);
-  color:white;
   min-height:100vh;
+  background:linear-gradient(135deg,#020617,#050b25);
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:30px;
-}
-
-/* MAIN CARD */
-.contact-card{
-  max-width:560px;
-  width:100%;
-  background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(18px);
-  border-radius:28px;
-  padding:40px;
-  border:1px solid rgba(255,255,255,0.25);
-  box-shadow:0 0 35px rgba(34,197,94,.25);
-  animation:fadeUp .8s ease;
-}
-
-h1{
-  font-size:38px;
-  text-align:center;
-  margin-bottom:30px;
-  letter-spacing:1px;
-}
-
-.green{
-  color:#22c55e;
-}
-
-/* ITEM */
-.contact-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 20px;
-  border-radius:18px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.18);
-  margin-bottom:18px;
-  transition:.3s;
-}
-
-.contact-item:hover{
-  box-shadow:0 0 22px rgba(34,197,94,.4);
-  transform:translateY(-2px);
-}
-
-/* LEFT */
-.contact-left{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  font-size:18px;
-  word-break:break-all;
-}
-
-.contact-left i{
-  font-size:22px;
-  color:#22c55e;
-  animation:pulse 2s infinite;
-}
-
-/* BUTTON */
-.copy-btn, .link-btn{
-  background:transparent;
-  border:1.5px solid #22c55e;
-  color:#22c55e;
-  padding:8px 14px;
-  border-radius:14px;
-  cursor:pointer;
-  font-size:14px;
-  transition:.3s;
-}
-
-.copy-btn:hover, .link-btn:hover{
-  background:#22c55e;
-  color:#000;
-}
-
-/* LINKEDIN */
-.linkedin{
-  text-decoration:none;
+  padding:20px;
   color:white;
 }
 
-/* FOOTER */
-.footer{
-  margin-top:30px;
+/* CARD */
+.contact-card{
+  width:100%;
+  max-width:420px;
+  background:rgba(255,255,255,0.06);
+  border-radius:26px;
+  padding:30px 22px;
+  border:1px solid rgba(255,255,255,0.25);
+}
+
+/* TITLE */
+h1{
   text-align:center;
+  margin-bottom:30px;
+  font-size:32px;
+}
+
+.green{ color:#22c55e; }
+
+/* ITEM — VERTICAL LAYOUT */
+.contact-item{
+  display:flex;                 /* 🔴 changed */
+  flex-direction:column;        /* 🔴 vertical */
+  align-items:center;           /* 🔴 center horizontally */
+  text-align:center;            /* 🔴 center text */
+
+  padding:22px;
+  margin-bottom:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.18);
+}
+
+/* LABEL */
+.label{
+  color:#22c55e;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+
+/* VALUE */
+.value{
+  font-size:16px;
+  margin-bottom:14px;
+  word-break:break-word;
+}
+
+/* BUTTON */
+.action-btn{
+  background:transparent;
+  border:1.5px solid #22c55e;
+  color:#22c55e;
+  padding:8px 22px;
+  border-radius:14px;
   font-size:14px;
-  opacity:.7;
+  cursor:pointer;
+  transition:.3s;
+  text-decoration:none;
 }
 
-/* ANIMATIONS */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
-}
-
-@keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.15)}
-}
-
-/* RESPONSIVE */
-@media(max-width:480px){
-  h1{font-size:30px}
-  .contact-left{font-size:16px}
+.action-btn:hover{
+  background:#22c55e;
+  color:#000;
 }
 </style>
-</head>
 
 <body>
 
@@ -147,46 +99,37 @@ h1{
 
   <!-- PHONE -->
   <div class="contact-item">
-    <div class="contact-left">
-      <i class="fa-solid fa-phone"></i>
-      <span id="phone">+91 8897497625</span>
-    </div>
-    <button class="copy-btn" onclick="copyText('phone')">Copy</button>
+    <span class="label">PHONE</span>
+    <span class="value" id="phone">+91 8897497625</span>
+    <button class="action-btn" onclick="copyText('phone')">Copy</button>
   </div>
 
   <!-- EMAIL -->
   <div class="contact-item">
-    <div class="contact-left">
-      <i class="fa-solid fa-envelope"></i>
-      <span id="email">vinay.kolar1122@gmail.com</span>
-    </div>
-    <button class="copy-btn" onclick="copyText('email')">Copy</button>
+    <span class="label">EMAIL</span>
+    <span class="value" id="email">vinay.kolar1122@gmail.com</span>
+    <button class="action-btn" onclick="copyText('email')">Copy</button>
   </div>
 
   <!-- LINKEDIN -->
-  <a class="contact-item linkedin"
-     href="https://www.linkedin.com/in/vinay-kolar"
-     target="_blank">
-    <div class="contact-left">
-      <i class="fa-brands fa-linkedin"></i>
-      <span>https://www.linkedin.com/in/vinay-kolar-848b93156/</span>
-    </div>
-    <button class="link-btn">Open</button>
-  </a>
-
-  <div class="footer">
-    © Vinay Kolar • Creative Director
+  <div class="contact-item">
+    <span class="label">LINKEDIN</span>
+    <span class="value">
+      linkedin.com/in/vinay-kolar-848b93156
+    </span>
+    <a href="https://www.linkedin.com/in/vinay-kolar-848b93156/"
+       target="_blank"
+       class="action-btn">Open</a>
   </div>
 
 </div>
 
 <script>
-function copyText(id){
+  function copyText(id){
   const text = document.getElementById(id).innerText;
   navigator.clipboard.writeText(text);
   alert("Copied: " + text);
 }
 </script>
-
 </body>
 </html>
