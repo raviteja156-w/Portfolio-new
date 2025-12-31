@@ -1,245 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vinay Kolar | Creative Director</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vinay Kolar | Creative Director</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Segoe UI',sans-serif;
+    }
 
-<style>
-/* =====================
-   FONT (SAFE FALLBACK)
-===================== */
-body{
-  font-family:'Segoe UI',system-ui,sans-serif;
-  background:#020617;
-  color:#fff;
-  overflow-x:hidden;
-}
+    body{
+      background:#020617;
+      color:#fff;
+      overflow-x:hidden;
+      overflow-y:auto;
+    }
 
-/* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    /* PARTICLE CANVAS */
+    #particleCanvas{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+    }
 
-/* CONTACT BUTTON */
-.contact{
-  position:fixed;
-  top:20px;
-  right:24px;
-  padding:12px 26px;
-  border:1.5px solid #22c55e;
-  color:#22c55e;
-  border-radius:40px;
-  font-weight:700;
-  text-decoration:none;
-  z-index:50;
-  transition:.3s;
-}
-.contact:hover{
-  background:#22c55e;
-  color:#021b10;
-  box-shadow:0 0 18px rgba(34,197,94,.6);
-}
+    /* CONTACT BUTTON */
+    .contact{
+      position:fixed;
+      top:24px;
+      right:24px;
+      padding:12px 28px;
+      border-radius:40px;
+      border:2px solid #22c55e;
+      color:#22c55e;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:1px;
+      transition:.3s ease;
+      z-index:10;
+    }
 
-/* =====================
-   HERO
-===================== */
-.hero{
-  min-height:100vh;
-  position:relative;
-  display:flex;
-  align-items:flex-start;
-  padding:80px 60px;
-}
+    .contact:hover{
+      background:#22c55e;
+      color:#020617;
+    }
 
-/* BACKGROUND IMAGE — FIXED */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url("https://i.ibb.co/wZy8W9t7/person.png") no-repeat;
-  background-size:auto 100%;       /* 👈 KEY FIX (zoom out) */
-  background-position:right center;
-  z-index:1;
-}
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:80px 24px;
+    }
 
-/* OVERLAY */
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to right,
-    rgba(2,6,23,0.98) 0%,
-    rgba(2,6,23,0.95) 35%,
-    rgba(2,6,23,0.6) 65%,
-    rgba(2,6,23,0.3) 100%
-  );
-  z-index:2;
-}
+    .left{
+      width:100%;
+      max-width:480px;
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+    }
 
-/* CONTENT */
-.left{
-  max-width:720px;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  gap:28px;
-  position:relative;
-  z-index:5;
-}
+    /* PROFILE */
+    .profile-circle{
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      border:3px solid #22c55e;
+      position:relative;
+      margin:auto;
+    }
 
-/* NAME */
-.name{
-  font-size:clamp(38px,6vw,68px);
-  font-weight:900;
-  letter-spacing:2px;
-}
+    .profile-circle img{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      object-fit:cover;
+    }
 
-/* GLASS BOX */
-.box{
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(14px);
-  border-radius:26px;
-  padding:32px;
-  border:1px solid rgba(255,255,255,0.22);
-  box-shadow:0 0 22px rgba(255,255,255,.08);
-}
+    .name{
+      text-align:center;
+      letter-spacing:3px;
+      font-size:28px;
+    }
 
-/* TEXT */
-.box h2{
-  font-size:26px;
-  margin-bottom:10px;
-}
-.green{
-  color:#22c55e;
-  font-weight:700;
-}
-.box p{
-  font-size:16px;
-  line-height:1.65;
-}
+    /* GLASS BOX */
+    .box{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(14px);
+      border-radius:22px;
+      padding:24px;
+    }
 
-/* SKILLS */
-.skills{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:10px 22px;
-}
+    .box h2{
+      margin-bottom:12px;
+      letter-spacing:1px;
+    }
 
-/* WORK BUTTON */
-.work-btn{
-  margin:30px auto 0;
-  width:100%;
-  max-width:420px;
-  padding:18px 26px;
-  border-radius:60px;
-  border:1.5px solid #fff;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  cursor:pointer;
-  transition:.3s;
-}
-.work-btn span{
-  font-size:20px;
-  font-weight:800;
-}
-.work-btn:hover{
-  border-color:#22c55e;
-  background:rgba(34,197,94,.15);
-  box-shadow:0 0 25px rgba(34,197,94,.6);
-}
+    .box p{
+      margin-bottom:8px;
+      line-height:1.6;
+      font-size:15px;
+    }
 
-/* =====================
-   MOBILE NATURAL STACK
-===================== */
-@media(max-width:768px){
-  .hero{
-    padding:60px 20px;
-  }
+    .green{
+      color:#22c55e;
+      font-weight:600;
+    }
 
-  .hero::before{
-    background-size:100% auto;
-    background-position:center top;
-  }
+    /* SKILLS */
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
 
-  .hero::after{
-    background:linear-gradient(
-      to bottom,
-      rgba(2,6,23,0.97) 0%,
-      rgba(2,6,23,0.85) 55%,
-      rgba(2,6,23,0.45) 100%
-    );
-  }
+    .skills p{
+      border:1px solid rgba(255,255,255,0.2);
+      padding:6px 14px;
+      border-radius:20px;
+      font-size:13px;
+      white-space:nowrap;
+    }
 
-  .name{
-    text-align:center;
-  }
-}
-</style>
+    /* WORK BUTTON */
+    .work-btn{
+      margin-top:10px;
+      width:100%;
+      padding:16px 22px;
+      border-radius:50px;
+      border:1.5px solid #fff;
+      display:flex;
+      justify-content:space-between;
+      cursor:pointer;
+      transition:.3s;
+      font-weight:600;
+      letter-spacing:1px;
+    }
+
+    .work-btn:hover{
+      border-color:#22c55e;
+      background:rgba(34,197,94,.15);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:600px){
+      .profile-circle{
+        width:200px;
+        height:200px;
+      }
+      .profile-circle img{
+        width:160px;
+        height:160px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<a href="/contact" class="contact">CONTACT</a>
+  <!-- PARTICLES -->
+  <canvas id="particleCanvas"></canvas>
 
-<div class="hero">
-  <div class="left">
+  <!-- CONTACT -->
+  <a href="/contact" class="contact">CONTACT</a>
 
-    <div class="name">VINAY KOLAR</div>
+  <section class="hero">
+    <div class="left">
 
-    <div class="box">
-      <h2>CREATIVE GEEK</h2>
-      <p class="green">250+ Clients • 12+ Years</p>
-      <p><b>One Obsessive Visual mind.</b></p>
-      <p>
-        I turn brand stories into high-performing video campaigns.
-        From concept to final cut, I create cinematic,
-        conversion-focused content for social, UGC and digital platforms.
-      </p>
-      <p>
-        As a Creative Director, I’ve led international projects,
-        partnered with the Government of Telangana, and delivered
-        large-scale AI video campaigns.
-      </p>
-    </div>
-
-    <div class="box">
-      <h2>CREATIVE JOURNEY</h2>
-      <p><b>Video Producer & Ad Filmmaker</b> – <span class="green">Hyphen Marketers, India</span></p>
-      <p><b>Production Manager & Set Designer</b> – <span class="green">Tutorac, India</span></p>
-      <p><b>Business Developer & Client Services Manager</b> – <span class="green">Ventures Multimedia & Communications</span></p>
-      <p><b>Video Producer & Creative Director</b> – <span class="green">Kalo, India</span></p>
-    </div>
-
-    <div class="box">
-      <h2 class="green">Skills</h2>
-      <div class="skills">
-        <p>AI Ads Production</p>
-        <p>Production Project Management</p>
-        <p>Creative Direction</p>
-        <p>Social Media Strategy</p>
-        <p>Set Design & Prop Styling</p>
-        <p>UGC Content Creation</p>
-        <p>Script & Storyboarding</p>
-        <p>Product Photography</p>
-        <p>Team Leadership</p>
-        <p>Budget & Resource Management</p>
+      <div class="profile-circle">
+        <img src="https://i.ibb.co/wZy8W9t7/person.png" alt="Vinay Kolar">
       </div>
-    </div>
 
-    <div class="work-btn" onclick="window.location.href='/portfolio'">
-      <span>MY WORKS</span>
-      <span>➜ ➜ ➜</span>
-    </div>
+      <h1 class="name">VINAY KOLAR</h1>
 
-  </div>
-</div>
+      <!-- CREATIVE GEEK -->
+      <div class="box">
+        <h2>CREATIVE GEEK</h2>
+        <p class="green">250+ Clients • 12+ Years</p>
+        <p><b>One Obsessive Visual Mind.</b></p>
+        <p>
+          I turn brand stories into high-performing video campaigns.
+          From concept to final cut, I create cinematic,
+          conversion-focused content.
+        </p>
+      </div>
+
+      <!-- CREATIVE JOURNEY -->
+      <div class="box">
+        <h2>CREATIVE JOURNEY</h2>
+        <p><b>Video Producer & Ad Filmmaker</b> – <span class="green">Hyphen Marketers, India</span></p>
+        <p><b>Production Manager & Set Designer</b> – <span class="green">Tutorac, India</span></p>
+        <p><b>Business Developer & Client Services Manager</b> – <span class="green">Ventures Multimedia & Communications</span></p>
+        <p><b>Video Producer & Creative Director</b> – <span class="green">Kala, India</span></p>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="box">
+        <h2 class="green">Skills</h2>
+        <div class="skills">
+          <p>AI Ads Production</p>
+          <p>Production Project Management</p>
+          <p>Creative Direction</p>
+          <p>Social Media Strategy</p>
+          <p>Set Design & Prop Styling</p>
+          <p>UGC Content Creation</p>
+          <p>Script & Storyboarding</p>
+          <p>Product Photography</p>
+          <p>Team Leadership</p>
+          <p>Budget & Resource Management</p>
+        </div>
+      </div>
+
+      <!-- WORK BUTTON -->
+      <div class="work-btn" id="workBtn">
+        <span>MY WORKS</span>
+        <span>➜ ➜ ➜</span>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    /* WORK BUTTON */
+    document.getElementById("workBtn").addEventListener("click", () => {
+      window.location.href = "/portfolio";
+    });
+
+    /* PARTICLES */
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    const particleCount = 40;
+
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    class Particle{
+      constructor(){
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 4 + 2;
+        this.speedX = (Math.random() - 0.5) * 0.6;
+        this.speedY = (Math.random() - 0.5) * 0.6;
+      }
+
+      draw(){
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(34,197,94,0.8)";
+        ctx.shadowColor = "#22c55e";
+        ctx.shadowBlur = 15;
+        ctx.fill();
+      }
+
+      update(){
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if(this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if(this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+        this.draw();
+      }
+    }
+
+    function initParticles(){
+      particles = [];
+      for(let i=0;i<particleCount;i++){
+        particles.push(new Particle());
+      }
+    }
+    initParticles();
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p => p.update());
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 
 </body>
 </html>
+
