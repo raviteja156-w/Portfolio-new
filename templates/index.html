@@ -396,23 +396,7 @@ const particles=[...Array(40)].map(()=>({
     d:Math.random()*2
 }));
 
-let angle=0;
-(function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle="rgba(34,197,94,.7)";
-    ctx.beginPath();
-    particles.forEach(p=>{
-        ctx.moveTo(p.x,p.y);
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        p.y+=Math.cos(angle+p.d)+1;
-        p.x+=Math.sin(angle)*2;
-        if(p.y>canvas.height)p.y=0;
-        if(p.x>canvas.width)p.x=0;
-    });
-    ctx.fill();
-    angle+=0.01;
-    requestAnimationFrame(animate);
-})();
+
 const setDesignSlides = [
     "https://i.ibb.co/ksB1vh66/Set-design-1.png",
     "https://i.ibb.co/fYHHVw5B/set-design-2.png",
@@ -609,13 +593,34 @@ function goBack(){
     listSection.classList.add("hidden");
     home.style.display="flex";
 }
+document.addEventListener("DOMContentLoaded", () => {
 
-window.onload=()=>{
-    
-    document.querySelectorAll(".fade-up").forEach((el,i)=>{
-        setTimeout(()=>el.classList.add("visible"),i*150);
+    // show page instantly
+    document.querySelectorAll(".fade-up").forEach(el=>{
+        el.classList.add("visible");
     });
-};
+
+    // start particles AFTER content is visible
+    setTimeout(startParticles, 300);
+});
+
+function startParticles(){
+    function animate(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle="rgba(34,197,94,.7)";
+        ctx.beginPath();
+        particles.forEach(p=>{
+            ctx.moveTo(p.x,p.y);
+            ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+            p.y+=1;
+            if(p.y>canvas.height)p.y=0;
+        });
+        ctx.fill();
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
 </script>
 
 </body>
